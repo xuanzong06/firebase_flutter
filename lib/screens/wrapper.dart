@@ -1,6 +1,8 @@
 import 'package:firebase_flutter/screens/authenticate/authenticate.dart';
 import 'package:firebase_flutter/screens/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_flutter/models/user.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -8,10 +10,14 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //return either Home or Authenticate widget
+    final user = Provider.of<mUser?>(context);
 
-    // return Home();
-    return Authenticate();
+
+    if(user == null){
+      return Authenticate();
+    }else{
+      return Home();
+    }
 
   }
 }

@@ -1,20 +1,22 @@
-import 'package:firebase_flutter/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_flutter/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget { // about null article : https://stackoverflow.com/questions/64560461/the-parameter-cant-have-a-value-of-null-because-of-its-type-in-dart
+
   final Function? toggleView;
-  SignIn({this.toggleView}); // this is constructor for class
+  Register({this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   // final AuthService _auth = AuthService();
   final AuthService _auth = AuthService();
   //text field state
   String email = '';
   String password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,13 +24,13 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text('Sign in to Brew Crew'),
+        title: Text('Sign up to Brew Crew'),
         actions: <Widget>[
           TextButton.icon(
             icon: Icon(Icons.person),
-            label: Text('Register'),
+            label: Text('Sign in'),
             onPressed: () async{
-              widget.toggleView!();
+              widget.toggleView!(); // toggleView+! = null check // add a null check
             },
           ),
         ],
@@ -66,7 +68,7 @@ class _SignInState extends State<SignIn> {
                   print(password);
                 },
                 child: Text(
-                  'Sign in',
+                  'Register',
                   style: TextStyle(color: Colors.white),
                 ),
               )

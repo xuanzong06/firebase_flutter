@@ -1,3 +1,4 @@
+import 'package:firebase_flutter/screens/authenticate/register.dart';
 import 'package:firebase_flutter/screens/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
 
@@ -9,11 +10,22 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+  bool showSignIn = true;
+  void toggleView(){
+    setState(() => showSignIn = !showSignIn); //reverse object is a = true !a = false ; if a = false , !a = true
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SignIn(),
+    if(showSignIn){
+      return SignIn(toggleView: toggleView); // 自定義屬性 可以自己命名
+    }else{
+      return Register(toggleView: toggleView);
+    }
+    // return Container(
+    //   child: Register(),
+      // child: SignIn(),
       // child: Text('Hee'),
-    );
+    // );
   }
 }
